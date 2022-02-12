@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "0abcca43-afa3-4620-ae52-790b86737870",
+		"name": "pruebaB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add_pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"const schema = {\r",
+							"\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"category\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"name\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"photoUrls\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"tags\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"status\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"category\",\r",
+							"    \"name\",\r",
+							"    \"photoUrls\",\r",
+							"    \"tags\",\r",
+							"    \"status\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"eval(pm.environment.get('commonGeneralTests'))(200, 'OK');\r",
+							"\r",
+							"pm.environment.set('id_result_pet', jsonData.id);\r",
+							"pm.environment.set('animal_name', jsonData.category.name);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{idPet}},\r\n    \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"{{animal}}\"\r\n  },\r\n  \"name\": \"{{animal}}\",\r\n  \"photoUrls\": [\r\n    \"{{animal}}\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"{{animal}}\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/pet/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"pet",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"var chai = require('chai');\r",
+							"var assert = chai.assert;\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"category\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"name\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"photoUrls\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"tags\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"status\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"category\",\r",
+							"    \"name\",\r",
+							"    \"photoUrls\",\r",
+							"    \"tags\",\r",
+							"    \"status\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"eval(pm.environment.get('commonGeneralTests'))(200, 'OK');\r",
+							"\r",
+							"\r",
+							"pm.test(\"check data test\", () => {\r",
+							"     \r",
+							"    const status = \"available\";\r",
+							"\r",
+							"    assert.strictEqual(jsonData.id, pm.environment.get('id_result_pet') ,\"these intigers are strictly equal\");\r",
+							"    assert.strictEqual(jsonData.category.name, pm.environment.get('animal_name'),\"these strings are strictly equal\");\r",
+							"    assert.strictEqual(jsonData.status, status ,\"these strings are strictly equal\");\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/pet/{{id_result_pet}}/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{id_result_pet}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"var chai = require('chai');\r",
+							"var assert = chai.assert;\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"category\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"name\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"photoUrls\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"tags\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"status\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"category\",\r",
+							"    \"name\",\r",
+							"    \"photoUrls\",\r",
+							"    \"tags\",\r",
+							"    \"status\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"eval(pm.environment.get('commonGeneralTests'))(200, 'OK');\r",
+							"\r",
+							"\r",
+							"pm.test(\"check data test\", () => {\r",
+							"     \r",
+							"    const id = 595;\r",
+							"    const status = \"available\";\r",
+							"\r",
+							"    assert.strictEqual(jsonData.id, id ,\"these intigers are strictly equal\");\r",
+							"    assert.strictEqual(jsonData.category.name, pm.environment.get('animal') ,\"these strings are strictly equal\");\r",
+							"    assert.strictEqual(jsonData.status, status ,\"these strings are strictly equal\");  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 595,\r\n    \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"{{animal}}\"\r\n  },\r\n  \"name\": \"{{animal}}\",\r\n  \"photoUrls\": [\r\n    \"{{animal}}\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"{{animal}}\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v2/pet/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v2",
+						"pet",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"let createVariable = (variableName, pathJson) =>{",
+					"    ",
+					"    ",
+					"    pm.environment.unset(variableName);",
+					"    pm.environment.set(variableName, pathJson);",
+					"",
+					"}",
+					"",
+					"let getRandomId = (min, max) => {",
+					"",
+					"    let id_pet = _.random(max, min) + min;",
+					"",
+					"",
+					"    return id_pet;",
+					"",
+					"}",
+					"",
+					"createVariable(\"idPet\", getRandomId(1, 1000));",
+					"",
+					"",
+					"let randomGeneral = variable => {",
+					"",
+					"    var generalText = Array.from(variable);",
+					"    const general = Math.floor(Math.random()* generalText.length);",
+					"",
+					"    return generalText[general];",
+					"}",
+					"",
+					"createVariable(\"animal\", randomGeneral(Array.of('perro', 'caballo', 'delfin', 'cocodrilo',",
+					"'ardilla', 'jirafa', 'boa', 'piton', 'rinoceronte', 'araña')));",
+					"",
+					"var commonGeneralTests = (status, text) => {",
+					"",
+					"",
+					"    pm.test(\"Content-Type is present\", () => {",
+					"",
+					"        pm.response.to.have.header(\"Content-Type\");",
+					"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal('application/json');",
+					"",
+					"    });",
+					"",
+					"    pm.test(`Status code is ${status}`, () => pm.response.to.have.status(status));",
+					"",
+					"    pm.test(`Status code name has ${text}`, () => pm.response.to.have.status(text));",
+					"",
+					"    pm.test(`Response time is less than ${pm.response.responseTime} ms`, () => pm.expect(pm.response.responseTime).to.be.below(15000));",
+					"",
+					"    pm.test(\"response should be okay to process\", () => {",
+					"        setTimeout(() => {",
+					"",
+					"            if(status === 200 && text === 'OK'){",
+					"                pm.response.to.be.ok;",
+					"                pm.response.to.not.be.error;",
+					"                return;",
+					"            }",
+					"            pm.response.to.be.withBody;",
+					"            pm.response.to.be.json;",
+					"            pm.response.to.not.have.jsonBody('error');",
+					"",
+					"        }, 300);",
+					"    });",
+					"",
+					"    pm.test(\"Validate the json response schema\", () => {",
+					"",
+					"        var Ajv = require('ajv');",
+					"        var ajv = new Ajv({ logger: console, allErrors: true });",
+					"",
+					"        pm.response.to.have.jsonSchema(schema);",
+					"        tests['Schema is valid'] = ajv.validate(schema, pm.response.json());",
+					"        if (ajv.errors != null) {",
+					"            tests[\"Schema validation error(s): \" + JSON.stringify(ajv.errors) + \";\"] = false;",
+					"        }",
+					"",
+					"",
+					"    });",
+					"};",
+					"",
+					"createVariable(\"commonGeneralTests\", commonGeneralTests.toString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://petstore.swagger.io",
+			"type": "string"
+		}
+	]
+}
