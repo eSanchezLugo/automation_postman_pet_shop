@@ -45,3 +45,7 @@ newman run C:\Users\Eduardo_Sanchez\Documents\pruebaB.postman_collection.json --
 * Se crea un nuevo animal en la pagina de petstore.
 * Se verifica que el animal nuevo se haya guardado correctamente en la base de datos.
 * Se modifica un animal ya existente.
+
+## 📜 Licencia :
+
+* The MIT License (MIT).
