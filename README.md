@@ -23,7 +23,7 @@ Nota : Para importar en postman, hacemos clic en el menú file -> import -> uplo
 
 ##  ⚙ Ejecutando las pruebas :
 
-* Para ejecutar la colección  pasamos el mouse por la carpeta de la colección y se visualizaran tres puntos, damos clic en ellos y nos aparecera un menu donde daremos clic en la opcion de rub collection, nos aparece una pantalla con todos nuestros end point, si requerimos realizar varias veces la prueba en el campo de iterations ponemos los ciclos que deseamos ejecutar de lo contrario damos clic en run pruebaB.
+* Para ejecutar la colección  pasamos el mouse por la carpeta de la colección y se visualizaran tres puntos, damos clic en ellos y nos aparecera un menu donde daremos clic en la opcion de run collection, nos aparece una pantalla con todos nuestros end point, si requerimos realizar varias veces la prueba en el campo de iterations ponemos los ciclos que deseamos ejecutar de lo contrario damos clic en run pruebaB.
 
 ![Demo petstore](http://g.recordit.co/XSNie3uBji.gif)
 
