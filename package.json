@@ -1,0 +1,11 @@
+{
+  "name" : "automation_postman_pet_shop",
+  "version": "1.0.0",
+  "description": "Postman test",
+  "directories":{
+    "test": "tests"
+  },
+  "scripts":{
+    "api-test-production": "newman run pruebaB.postman_collection.json'
+
+}
