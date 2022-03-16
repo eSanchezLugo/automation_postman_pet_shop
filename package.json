@@ -6,6 +6,6 @@
     "test": "tests"
   },
   "scripts":{
-    "api-test-production": "newman run pruebaB.postman_collection.json'
+    "api-test-production": "newman run pruebaB.postman_collection.json"
 
 }
