@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Postman test",
   "directories":{
-    "test": "tests"
+    "test": "automation_postman_pet_shop"
   },
   "scripts":{
-    "api-test-production": "newman run tests/pruebaB.postman_collection.json --reporters junit --reporter-junit-export newman.xml"
+    "api-test-production": "newman run automation_postman_pet_shop/pruebaB.postman_collection.json --reporters junit --reporter-junit-export newman.xml"
 
 },
   "dependencies":{
